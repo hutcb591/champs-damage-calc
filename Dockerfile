@@ -19,5 +19,5 @@ RUN npm install
 COPY . .
 RUN node build
 
-EXPOSE 3030
+EXPOSE 3000
 CMD [ "node", "server.js" ]
