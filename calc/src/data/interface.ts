@@ -94,6 +94,7 @@ export interface MoveFlags {
   bullet?: 1 | 0;
   pulse?: 1 | 0;
   slicing?: 1 | 0;
+  pivot?: 1 | 0;
   wind?: 1| 0;
 }
 
