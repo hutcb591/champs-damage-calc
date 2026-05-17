@@ -4,7 +4,6 @@
     /* Should make it easier to change colors in the future */
     --text: #e4e4e4;
     --background: #1b1b1b;
-    --background-image: url('../img/asl_bg.png');
 
     --button-color: #353535;
     --button-hover: var(--background);
@@ -16,7 +15,10 @@
 
 html, body {
     color: var(--text);
-    background-color: var(--background);
+    background-image: url('../img/asl_bg.png');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
     color-scheme: dark;
 }
 a {
