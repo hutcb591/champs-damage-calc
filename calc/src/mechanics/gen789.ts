@@ -636,6 +636,10 @@ export function calculateSMSSSV(
     !attacker.hasAbility('Guts') &&
     !move.named('Facade');
   desc.isBurned = applyBurn;
+  const applyFreeze =
+    attacker.hasStatus('frz') &&
+    move.category === 'Special'
+  desc.isFrozen = applyFreeze;
   const finalMods = calculateFinalModsSMSSSV(
     gen,
     attacker,
@@ -673,7 +677,7 @@ export function calculateSMSSSV(
   const damage = [];
   for (let i = 0; i < 16; i++) {
     damage[i] =
-      getFinalDamage(baseDamage, i, typeEffectiveness, applyBurn, false, stabMod, finalMod, protect);
+      getFinalDamage(baseDamage, i, typeEffectiveness, applyBurn, applyFreeze, stabMod, finalMod, protect);
   }
   result.damage = childDamage ? [damage, childDamage] : damage;
 
@@ -756,7 +760,7 @@ export function calculateSMSSSV(
           i,
           typeEffectiveness,
           applyBurn,
-          false,
+          applyFreeze,
           stabMod,
           newFinalMod,
           protect
@@ -1720,8 +1724,8 @@ export function calculateFinalModsSMSSSV(
   hitCount = 0
 ) {
   const finalMods = [];
-  const isSpecial = move.category === 'Special';
-  if (attacker.hasStatus('frz') && isSpecial) {
+
+  if (attacker.hasStatus('frz') && move.category === 'Special') {
     finalMods.push(4096);
     desc.isFrozen = true;
   }
