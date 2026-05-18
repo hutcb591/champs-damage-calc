@@ -1720,7 +1720,11 @@ export function calculateFinalModsSMSSSV(
   hitCount = 0
 ) {
   const finalMods = [];
-
+  const isSpecial = move.category === 'Special';
+  if (attacker.hasStatus('frz') && isSpecial) {
+    finalMods.push(4096);
+    desc.isFrozen = true;
+  }
   if (field.defenderSide.isReflect && move.category === 'Physical' &&
       !isCritical && !field.defenderSide.isAuroraVeil) {
     // doesn't stack with Aurora Veil
