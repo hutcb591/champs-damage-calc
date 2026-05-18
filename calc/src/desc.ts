@@ -8,7 +8,6 @@ import {error} from './util';
 import {isGrounded} from './mechanics/util';
 
 export interface RawDesc {
-  isFrozen: boolean;
   HPEVs?: string;
   attackBoost?: number;
   attackEVs?: string;
@@ -40,6 +39,7 @@ export interface RawDesc {
   isCritical?: boolean;
   isLightScreen?: boolean;
   isBurned?: boolean;
+  isFrozen?: boolean;
   isProtected?: boolean;
   isReflect?: boolean;
   isBattery?: boolean;
