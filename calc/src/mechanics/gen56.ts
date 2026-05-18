@@ -365,7 +365,7 @@ export function calculateBWXY(
   const damage: number[] = [];
   for (let i = 0; i < 16; i++) {
     damage[i] =
-      getFinalDamage(baseDamage, i, typeEffectiveness, applyBurn, false, stabMod, finalMod);
+      getFinalDamage(baseDamage, i, typeEffectiveness, applyBurn, false, stabMod, finalMod, isCritical);
   }
   result.damage = childDamage ? [damage, childDamage] : damage;
 
@@ -432,7 +432,8 @@ export function calculateBWXY(
           applyBurn,
           false,
           stabMod,
-          newFinalMod
+          newFinalMod,
+          isCritical
         );
         damageArray[i] = newFinalDamage;
       }
