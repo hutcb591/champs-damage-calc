@@ -387,6 +387,11 @@ function calculateFinalModsADV(
     baseDamage = Math.floor(baseDamage / 2);
     desc.isBurned = true;
   }
+  const isSpecial = move.category === 'Special';
+  if (attacker.hasStatus('frz') && isSpecial) {
+    baseDamage = Math.floor(baseDamage / 2);
+    desc.isFrozen = true;
+  }
 
   if (!isCritical) {
     const screenMultiplier = field.gameType !== 'Singles' ? 2 / 3 : 1 / 2;

@@ -8,6 +8,7 @@ import {error} from './util';
 import {isGrounded} from './mechanics/util';
 
 export interface RawDesc {
+  isFrozen: boolean;
   HPEVs?: string;
   attackBoost?: number;
   attackEVs?: string;
@@ -696,6 +697,11 @@ function getEndOfTurn(
     } else if (!defender.hasAbility('Magic Guard')) {
       damage -= Math.floor(defender.maxHP() / (gen.num === 1 || gen.num > 6 ? 16 : 8));
       texts.push('burn damage');
+    }
+  } else if (defender.hasStatus('frz')) {
+      if (!defender.hasAbility('Magic Guard')) {
+      damage -= Math.floor(defender.maxHP() / (gen.num === 1 || gen.num > 6 ? 16 : 8));
+      texts.push('freeze damage');
     }
   } else if (
     (defender.hasStatus('slp') || defender.hasAbility('Comatose')) &&
